@@ -9,11 +9,9 @@ export async function GET(request: Request) {
     const supabase = await createClient()
     const { error } = await supabase.auth.exchangeCodeForSession(code)
     if (!error) {
-      // Redirect ไปหน้า dashboard หลังจาก Login สำเร็จ
       return NextResponse.redirect(`${origin}/dashboard`)
     }
   }
 
-  // หากมี Error หรือไม่มี code ให้กลับไปหน้า login
   return NextResponse.redirect(`${origin}/login`)
 }
