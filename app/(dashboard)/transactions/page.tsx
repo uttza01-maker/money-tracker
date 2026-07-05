@@ -8,7 +8,7 @@ import TransactionsChart from './TransactionsChart';
 type TransactionItem = {
   id: string;
   description: string | null;
-  amount: number | string;
+  amount: number;
   category: string;
   type: string;
   created_at: string;
@@ -31,7 +31,10 @@ export default async function TransactionsPage() {
     .eq('user_id', user.id)
     .order('created_at', { ascending: false });
 
-  const transactionsData: TransactionItem[] = (transactions ?? []) as TransactionItem[];
+  const transactionsData: TransactionItem[] = (transactions ?? []).map((transaction) => ({
+    ...transaction,
+    amount: Number(transaction.amount),
+  })) as TransactionItem[];
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
