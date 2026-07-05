@@ -1,13 +1,14 @@
 import { createClient } from '@/lib/supabase/server';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function HomePage() {
   const supabase = await createClient();
-  const user = supabase ? (await supabase.auth.getUser()).data.user : null;
+  await supabase?.auth.getUser();
 
   return (
-      <main className="flex min-h-screen flex-col items-center justify-center p-8 text-center bg-linear-to-b from-slate-50 to-slate-100">
-      <img src="/file.svg" alt="Money illustration" className="w-40 h-40 mb-6 opacity-95" />
+    <main className="flex min-h-screen flex-col items-center justify-center p-8 text-center bg-linear-to-b from-slate-50 to-slate-100">
+      <Image src="/file.svg" alt="Money illustration" width={160} height={160} className="mb-6 h-40 w-40 opacity-95" />
       <h1 className="text-5xl font-extrabold mb-4 text-sky-600">Money Tracker</h1>
       <p className="text-xl mb-8 text-gray-600 max-w-lg">
         บันทึกรายรับ-รายจ่ายของคุณอย่างเป็นระบบ ปลอดภัย และใช้งานง่าย
