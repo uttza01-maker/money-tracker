@@ -3,14 +3,17 @@ import { updateSession } from "@/lib/supabase/middleware";
 import { createClient } from "@/lib/supabase/server";
 
 export async function middleware(request: NextRequest) {
-  // 1. จัดการ Session
   const response = await updateSession(request);
-
-  // 2. ตรวจสอบสิทธิ์สำหรับ Protected Routes
   const { pathname } = request.nextUrl;
-  
-  // ถ้าพยายามเข้าถึง /transactions (Dashboard) ให้เช็ค Auth
+
   if (pathname.startsWith('/transactions')) {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseAnonKey) {
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
 

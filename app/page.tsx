@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default async function HomePage() {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const user = supabase ? (await supabase.auth.getUser()).data.user : null;
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-8 text-center bg-gradient-to-b from-slate-50 to-slate-100">
