@@ -59,7 +59,7 @@ export default function AddTransactionForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-6 grid gap-4 rounded-2xl border border-slate-800/70 bg-gradient-to-b from-slate-900/60 to-slate-900/40 p-4 shadow-lg">
+    <form onSubmit={handleSubmit} className="mb-6 grid gap-4 rounded-2xl border border-slate-800/70 bg-linear-to-b from-slate-900/60 to-slate-900/40 p-4 shadow-lg">
       <div className="grid gap-3 sm:grid-cols-3">
         <div className="sm:col-span-2">
           <label className="block text-xs font-medium text-slate-400">คำอธิบาย</label>
@@ -113,7 +113,7 @@ export default function AddTransactionForm() {
           <button
             type="submit"
             disabled={loading}
-            className="mt-1 w-full rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 px-4 py-3 text-sm font-semibold text-white shadow-md hover:opacity-95 disabled:opacity-60"
+            className="mt-1 w-full rounded-2xl bg-linear-to-r from-sky-500 to-indigo-500 px-4 py-3 text-sm font-semibold text-white shadow-md hover:opacity-95 disabled:opacity-60"
           >
             {loading ? 'กำลังบันทึก...' : 'บันทึกรายการ'}
           </button>

@@ -52,7 +52,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
       <div className="mx-auto flex min-h-screen max-w-3xl items-center px-6 py-16 sm:px-10">
-        <div className="w-full rounded-[2rem] border border-slate-800/70 bg-slate-900/90 p-10 shadow-2xl shadow-slate-950/40 backdrop-blur-xl">
+        <div className="w-full rounded-4xl border border-slate-800/70 bg-slate-900/90 p-10 shadow-2xl shadow-slate-950/40 backdrop-blur-xl">
           <div className="mb-8 space-y-4">
             <p className="text-sm uppercase tracking-[0.3em] text-sky-400">สมัครสมาชิก</p>
             <h1 className="text-4xl font-semibold text-white">เริ่มต้นบันทึกการเงินของคุณ</h1>

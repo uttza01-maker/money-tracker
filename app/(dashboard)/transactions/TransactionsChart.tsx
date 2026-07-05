@@ -23,7 +23,7 @@ export default function TransactionsChart({ transactions }: { transactions: Tran
   const max = items.reduce((m, [, v]) => Math.max(m, Math.abs(v)), 0) || 1;
 
   return (
-    <section className="rounded-2xl border border-slate-800/80 bg-gradient-to-b from-slate-900/60 to-slate-900/40 p-4 shadow-sm">
+    <section className="rounded-2xl border border-slate-800/80 bg-linear-to-b from-slate-900/60 to-slate-900/40 p-4 shadow-sm">
       <div className="flex items-center justify-between">
         <h3 className="mb-3 text-sm font-semibold text-slate-300">สรุปตามหมวดหมู่</h3>
         <div className="flex items-center gap-3">
@@ -43,11 +43,11 @@ export default function TransactionsChart({ transactions }: { transactions: Tran
               <div key={cat} className="flex items-center gap-3">
                 <div className="w-36 text-sm text-slate-300">{cat}</div>
                 <div className="flex-1">
-                  <div className="h-5 w-full rounded-full bg-gradient-to-r from-slate-800 to-slate-800/60">
+                  <div className="h-5 w-full rounded-full bg-linear-to-r from-slate-800 to-slate-800/60">
                     <div
                       style={{ width: `${width}%` }}
                       className={
-                        `h-5 rounded-full ${positive ? 'bg-gradient-to-r from-emerald-500 to-emerald-400' : 'bg-gradient-to-r from-rose-500 to-rose-400'}`
+                        `h-5 rounded-full ${positive ? 'bg-linear-to-r from-emerald-500 to-emerald-400' : 'bg-linear-to-r from-rose-500 to-rose-400'}`
                       }
                     />
                   </div>

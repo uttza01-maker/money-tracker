@@ -5,6 +5,15 @@ import LogoutButton from './LogoutButton';
 import AddTransactionForm from './AddTransactionForm';
 import TransactionsChart from './TransactionsChart';
 
+type TransactionItem = {
+  id: string;
+  description: string | null;
+  amount: number | string;
+  category: string;
+  type: string;
+  created_at: string;
+};
+
 export default async function TransactionsPage() {
   const supabase = await createClient();
 
@@ -22,10 +31,12 @@ export default async function TransactionsPage() {
     .eq('user_id', user.id)
     .order('created_at', { ascending: false });
 
+  const typedTransactions: TransactionItem[] = (transactions ?? []) as TransactionItem[];
+
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
       <div className="mx-auto max-w-6xl px-6 py-10 sm:px-10">
-        <div className="rounded-[2rem] border border-slate-800/80 bg-slate-900/90 p-8 shadow-2xl shadow-slate-950/40 backdrop-blur-xl">
+        <div className="rounded-4xl border border-slate-800/80 bg-slate-900/90 p-8 shadow-2xl shadow-slate-950/40 backdrop-blur-xl">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-sm uppercase tracking-[0.28em] text-sky-400">แดชบอร์ด</p>
@@ -45,12 +56,12 @@ export default async function TransactionsPage() {
           </div>
 
           <div className="mt-6">
-            <TransactionsChart transactions={transactions ?? []} />
+            <TransactionsChart transactions={typedTransactions} />
           </div>
 
           <div className="mt-8 grid gap-6">
-            {transactions && transactions.length > 0 ? (
-              transactions.map((transaction) => (
+            {typedTransactions.length > 0 ? (
+              typedTransactions.map((transaction) => (
                 <article key={transaction.id} className="rounded-2xl border border-slate-800/70 bg-slate-950/60 p-5 transition hover:shadow-lg">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
