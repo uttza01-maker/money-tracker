@@ -31,7 +31,7 @@ export default async function TransactionsPage() {
     .eq('user_id', user.id)
     .order('created_at', { ascending: false });
 
-  const typedTransactions: TransactionItem[] = (transactions ?? []) as TransactionItem[];
+  const transactionsData: TransactionItem[] = (transactions ?? []) as TransactionItem[];
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
@@ -56,12 +56,12 @@ export default async function TransactionsPage() {
           </div>
 
           <div className="mt-6">
-            <TransactionsChart transactions={typedTransactions} />
+            <TransactionsChart transactions={transactionsData} />
           </div>
 
           <div className="mt-8 grid gap-6">
-            {typedTransactions.length > 0 ? (
-              typedTransactions.map((transaction) => (
+            {transactionsData.length > 0 ? (
+              transactionsData.map((transaction: TransactionItem) => (
                 <article key={transaction.id} className="rounded-2xl border border-slate-800/70 bg-slate-950/60 p-5 transition hover:shadow-lg">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
